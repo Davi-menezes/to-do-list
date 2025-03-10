@@ -19,18 +19,8 @@ fieldset{
     border-color: blue;
     border-width: 4px;
 }
-.box{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.inputbox{
-    display: flex;
-    flex-direction: row;
-}
 
-#todo{
+#to-do{
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -38,4 +28,89 @@ fieldset{
     padding: 18px;
     border-radius: 10px;
     width: 450px;
+}
+
+#to-do h1{
+    color: #e5f9ff;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.to-do-form{
+    display: flex;
+    width: 100%;
+}
+
+.to-do-form input{
+    background-color: transparent;
+    border: none;
+    color: #e5f9ff;
+    font-size: 25px;
+    width: 100%;
+    padding: 4px;
+    border-bottom: 3px solid green;
+}
+
+.to-do-form input:focus-visible{
+    outline: none;
+}
+
+.to-do-form .buttonform{
+    border: none;
+    min-width: 40px;
+    min-height: 40px;
+    background-color: green;
+    border-radius: 100%;
+    font-size: 20px;
+    transition: scale 0.5s ease;
+}
+
+.to-do-form .buttonform:hover{
+    cursor: pointer;
+    scale: 1.2;
+}
+
+.task{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #262626;
+    background-color: #191919;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.task .progress{
+    margin-right: 10px;
+}
+
+.task .progress.done + .task-description{
+    text-decoration: line-through;
+    color: #e5f9ffa7;
+}
+
+.task .task-description{
+    font-size: 16px;
+    color: #fff;
+    padding: 4px 0px;
+    width: 100%;
+}
+
+.task .task-actions{
+    display: flex;
+    gap: 10px;
+}
+
+.task-actions{
+    font-size: 19px;
+}
+
+.hidden{
+    display: none !important;
+}
+
+@media screen and (max-width: 600px){
+    #to-do{
+        width: 300px;
+    }
 }

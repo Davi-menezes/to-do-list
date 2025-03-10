@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <title>To-do List</title>
 </head>
 <body>
-    <div id="todo">
+    <div id="to-do">
         <h1>Tarefas</h1>
         <!--Adicionar tarefa-->
-        <form action="" class="to-do-form" method="post">
+        <form action="../backend/add_task.php" class="to-do-form" method="POST">
             <input type="text" name="addtask" placeholder="Adicionar tarefa" required>
             <button type="submit" class="buttonform">
                 <i class="fa-solid fa-plus"></i>
@@ -21,31 +22,30 @@
             <div class="task">
                 <input type="checkbox" name="progress" class="progress">
 
-                <p class="tasks_description">ipson</p>
-            </div>
+                <p class="task-description">
+                    ipson
+                </p>
+                <!--botoes de ação, apagar e editar(update)-->
+                <div class="task-actions">
+                    <a class="action-button edit-button">
+                        <i class="fa-solid fa-pen-to-square" style="color: green;"></i>
+                    </a>
 
-            <!--botoes de ação, apagar e editar(update)-->
-            <div class="tskactions">
-              <div>
-                <a href="" class="action_button edit_task">
-                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                </a>
+                    <a href="" class="action-button delete-button">
+                        <i class="fa-solid fa-trash" style="color: #e01b24;"></i>
+                    </a>
 
-                <a href="" class="action_button delete_task">
-                    <i class="fa-solid fa-trash" style="color: #e01b24;"></i>
-                </a>
-            </div> 
-            
+                </div>
                 <!--pagina de editar-->
-                <form action="" class="todo-form edit_task">
-                    <input type="text" name="addtask" placeholder="editar tarefa...">
-                    <button type="submit" class="buttonform confirmbutton">
-                        <i class="fa-solid fa-check"></i>
-                    </button>
-                </form>
+                    <form action="" class="to-do-form edit-task hidden">
+                        <input type="text" name="addtask" placeholder="editar tarefa...">
+                        <button type="submit" class="buttonform confirmbutton">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
    <script src="script.js"></script>
 </body>
 </html>
