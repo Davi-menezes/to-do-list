@@ -82,6 +82,12 @@ fieldset{
 
 .task .progress{
     margin-right: 10px;
+    
+}
+
+.progress{
+    width: 30px;
+    height: 40px;
 }
 
 .task .progress.done + .task-description{
@@ -94,6 +100,7 @@ fieldset{
     color: #fff;
     padding: 4px 0px;
     width: 100%;
+    height: 40px;
 }
 
 .task .task-actions{

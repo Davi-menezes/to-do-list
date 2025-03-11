@@ -12,9 +12,9 @@
     <div id="to-do">
         <h1>Tarefas</h1>
         <!--Adicionar tarefa-->
-        <form action="../backend/add_task.php" class="to-do-form" method="POST">
-            <input type="text" name="addtask" placeholder="Adicionar tarefa" required>
-            <button type="submit" class="buttonform">
+        <form action="../backend/add_task.php" id="form-task" class="to-do-form" method="POST">
+            <input type="text" name="addtask" id="task" placeholder="Adicionar tarefa" required>
+            <button type="submit" id="btn-add" class="buttonform">
                 <i class="fa-solid fa-plus"></i>
             </button>
         </form>
@@ -22,23 +22,23 @@
             <div class="task">
                 <input type="checkbox" name="progress" class="progress">
 
-                <p class="task-description">
-                    ipson
+                <p class="task-description" name="task-description" id="tasks">
+                    
                 </p>
                 <!--botoes de ação, apagar e editar(update)-->
                 <div class="task-actions">
                     <a class="action-button edit-button">
                         <i class="fa-solid fa-pen-to-square" style="color: green;"></i>
                     </a>
-
-                    <a href="" class="action-button delete-button">
+                    
+                    <a class="action-button delete-button">
                         <i class="fa-solid fa-trash" style="color: #e01b24;"></i>
                     </a>
 
                 </div>
                 <!--pagina de editar-->
-                    <form action="" class="to-do-form edit-task hidden">
-                        <input type="text" name="addtask" placeholder="editar tarefa...">
+                    <form action="../backend/update_task.php" class="to-do-form edit-task hidden">
+                        <input type="text" name="edit-task" placeholder="editar tarefa...">
                         <button type="submit" class="buttonform confirmbutton">
                             <i class="fa-solid fa-check"></i>
                         </button>
