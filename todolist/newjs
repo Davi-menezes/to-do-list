@@ -1,0 +1,109 @@
+var formTask = document.getElementsById("form-task");
+var taskInput = document.getElementsById("task");
+var btnAdd = document.getElementsById("btn-add");
+var taskDiv = document.getElementsById("tasks");
+
+function addTask() {
+    var taskValue = taskInput.value;
+    fetch ("../backend/add_task.php", {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `addtask=${encodeURIComponent(taskValue)}`,
+    })
+    .then((response) => response.text())
+    .then((message) => {
+        console.log(message);
+        taskInput.value = "";
+        getTask();
+    })
+    .catch((error) => console.error("erro inesperado: ", error));
+}
+
+function getTask() {
+    fetch("../backend/get_task.php")
+    .then((response) => response.json())
+    .then((tasks) => {
+        taskDiv.innerHTML = "";
+        tasks.foreach((task) => {
+            const taskElement = document.createElement("div");
+            taskElement.classList.add("task");
+            taskElement.innerHTML = `
+                <input type="checkbox" name="progress" class="progress" ${task.status === "concluida" ? "checked" : ""}>
+
+                <p class="task-description" ${task.status === "concluida" ? "done" : ""} name="task-description" id="tasks">
+                    ${task.task}
+                </p>
+                <!--botoes de ação, apagar e editar(update)-->
+                <div class="task-actions">
+                    <a class="action-button edit-button">
+                        <i class="fa-solid fa-pen-to-square" style="color: green;"></i>
+                    </a>
+                    
+                    <a href="#" class="action-button delete-button" data-id="${task.id}">
+                        <i class="fa-solid fa-trash" style="color: #e01b24;"></i>
+                    </a>
+
+                </div>
+                <!--pagina de editar-->
+                        <form class="to-do-form edit-task hidden">
+                        <input type="text" name="edit-task" id="edit-task" placeholder="editar tarefa..." value="${task.task}">
+                        <input type="hidden" name="id" value="${task.id}">
+                        <input type="hidden" name="status" value="${task.status}">
+                        <button type="submit" class="buttonform confirmbutton">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                    </form>`;
+            taskDiv.appendChield(taskElement);
+        });
+    })
+    .catch((error) => console.error("erro inesperado", error));
+}
+
+formTask.addEventListener("submit", (event) => {
+    event.preventDefault();
+    addTask();
+});
+
+taskDiv.addEventListener("click", (event) => {
+    if (event.target.closest(".delete-button")) {
+        event.preventDefault();
+        const id = event.target.closest(".delete-button").dataset.id;
+        deleteTask(id);
+    }
+});
+
+taskDiv.addEventListener("submit", (event) => {
+    if (event.target.closest(".edit-task")) {
+        event.preventDefault();
+        const form = event.target.closest(".edit-task");
+        updateTask(new FormData(form));
+    }
+});
+
+taskDiv.addEventListener("change", (event) => {
+    if(event.target.closest(".progress")) {
+        const checkbox = event.target.closest(".progress");
+        const taskElement = checkbox.closest(".task");
+        const id = taskElement.querySelector(".delete-button"). dataset.id;
+        const status = checkbox.checked ? "concluida" : "pendente";
+        updateTask(id, status);
+    }
+});
+
+function deleteTask(id) {
+    fetch("../backend/delete_task.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "aplication/x-www-form-urlencoded",
+        },
+        body: `id=${encodeURIComponent(id)}`,
+    })
+    .then((response) => response.text())
+    .then((message) => {
+        console.log(message);
+        getTask();
+    })
+    .catch((error) => console.error("erro inesperado: ", error));
+}
