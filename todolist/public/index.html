@@ -1,51 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <title>To-do List</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="to-do">
-        <h1>Tarefas</h1>
-        <!--Adicionar tarefa-->
-        <form action="../backend/add_task.php" id="form-task" class="to-do-form" method="POST">
-            <input type="text" name="addtask" id="task" placeholder="Adicionar tarefa" required>
-            <button type="submit" id="btn-add" class="buttonform">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </form>
-        <div id="tasks">
-            <div class="task">
-                <input type="checkbox" name="progress" class="progress">
-
-                <p class="task-description" name="task-description" id="tasks">
-                    
-                </p>
-                <!--botoes de ação, apagar e editar(update)-->
-                <div class="task-actions">
-                    <a class="action-button edit-button">
-                        <i class="fa-solid fa-pen-to-square" style="color: green;"></i>
-                    </a>
-                    
-                    <a class="action-button delete-button">
-                        <i class="fa-solid fa-trash" style="color: #e01b24;"></i>
-                    </a>
-
-                </div>
-                <!--pagina de editar-->
-                    <form action="../backend/update_task.php" class="to-do-form edit-task hidden">
-                        <input type="text" name="edit-task" placeholder="editar tarefa...">
-                        <button type="submit" class="buttonform confirmbutton">
-                            <i class="fa-solid fa-check"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-   <script src="script.js"></script>
-</body>
+      <h1>Tarefas</h1>
+      <!--Adicionar tarefa-->
+      <form
+        action="../backend/add_task.php"
+        id="form-task"
+        class="to-do-form"
+        method="POST"
+      >
+        <input
+          type="text"
+          name="addtask"
+          id="task"
+          placeholder="Adicionar tarefa"
+          required
+        />
+        <button type="submit" id="btn-add" class="buttonform">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </form>
+      <div id="tasks">
+        <!-- As tarefas serão carregadas aqui pelo script.js -->
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>

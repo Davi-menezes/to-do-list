@@ -1,7 +1,15 @@
 <?php
 include "config.php";
 
-$con->beginTransaction();
-$stmt = $con->prepare("UPDATE tasks SET task = ':addtask' WHERE id = ?");
-$stmt->bindValue(':addtask', $_POST['addtask']);
-$stmt->execute();
+try {
+    $con->beginTransaction();
+    $stmt = $con->prepare("UPDATE tasks SET task = :addtask, status = :status WHERE id = :id");
+    $stmt->bindValue(':addtask', $_POST['edit-task']);
+    $stmt->bindValue(':status', $_POST['status']);
+    $stmt->bindValue(':id', $_POST['id']);
+    $stmt->execute();
+    $con->commit();
+} catch (PDOException $e) {
+    echo('erro:' . $e->getMessage());
+}
+?>
